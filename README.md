@@ -1,1 +1,1 @@
-The dataset SH-HAZE can be accessed at the website https://c.wss.cc/f/fxkgshwvb05 obtain.
+The dataset SH-HAZE can be available at the website https://c.wss.cc/f/fxkgshwvb05 obtain.
