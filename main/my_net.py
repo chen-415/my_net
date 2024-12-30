@@ -255,29 +255,11 @@ class DEConv(nn.Module):
         w4, b4 = self.conv1_4.get_weight()
         w5, b5 = self.conv1_5.weight, self.conv1_5.bias
 
-        w = w1 + w2 + w3 + w4 + w5
-        b = b1 + b2 + b3 + b4 + b5
+        w = w1 + w2 # + w3 + w4 + w5
+        b = b1 + b2 # + b3 + b4 + b5
         res = nn.functional.conv2d(input=x, weight=w, bias=b, stride=1, padding=1, groups=1)
 
         return res
-
-class DEBlockTrain(nn.Module):
-    def __init__(self, conv, dim, kernel_size):
-        super(DEBlockTrain, self).__init__()
-        self.conv1 = DEConv(dim)
-        self.act1 = nn.ReLU(inplace=True)
-        self.conv2 = conv(dim, dim, kernel_size, bias=True)
-
-    def forward(self, x):
-        res = self.conv1(x)
-        res = self.act1(res)
-        res = res + x
-        res = self.conv2(res)
-        res = res + x
-        return res
-
-
-
 
 ## Gated-Dconv Feed-Forward Network (GDFN)
 class FeedForward(nn.Module):
